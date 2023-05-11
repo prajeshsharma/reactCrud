@@ -21,7 +21,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String username;
     private String email;
 
+    public Employee(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 }
