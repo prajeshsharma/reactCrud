@@ -1,5 +1,4 @@
 import './App.css';
-import Home from "./component/Home";
 import employeeService from './service/employee.service';
 import {useEffect, useState} from "react";
 
@@ -34,12 +33,14 @@ const App = () => {
                                     <td>{employee.id}</td>
                                     <td>{employee.name}</td>
                                     <td>{employee.email}</td>
-                                    <td><button>placeholder1</button><button>placeholder2</button></td>
+                                    <td><button className='update'>Update</button><button className='delete'>Delete</button></td>
                                 </tr>
                             ))
                         }
                 </table>
             </div>
+            <br/>
+            <button className='add' >Add new Employee</button>
         </div>
     );
 }
