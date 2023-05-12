@@ -1,7 +1,7 @@
 import './App.css';
 import employeeService from './service/employee.service';
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 const App = () => {
     const [employees, setEmployees] = useState([]);
