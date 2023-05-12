@@ -8,9 +8,7 @@ function AddEmployee() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const data = { name, email, image };
-
         const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
         if (!urlRegex.test(image)) {

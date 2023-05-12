@@ -18,18 +18,32 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    /**
+     *
+     * @param employee employee entity to be added
+     * @return employee entity to be added with CREATED status
+     */
     @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
         Employee newEmployee = employeeService.addNewEmployee(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @return all employees in the table with OK status
+     */
     @GetMapping("/getallemployees")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param id ID of the employee to be gotten
+     * @return the employee with that ID or error if not found
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long id) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);
@@ -37,7 +51,12 @@ public class EmployeeController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
+    /**
+     *
+     * @param id the ID of the employee to be udated
+     * @param employee the attributes of that exmployee
+     * @return the updated employee, or error if not found
+     */
     @PutMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @Validated @RequestBody Employee employee) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);
@@ -49,6 +68,11 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     *
+     * @param id the ID of the employee to be deleted
+     * @return OK status or NOT_FOUND
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployeeById(@PathVariable("id") long id) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);

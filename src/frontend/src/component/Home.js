@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import employeeService from "../service/employee.service";
-import './Home.css'
+import './Home.css';
 
 function Home() {
     const [employees, setEmployees] = useState([]);
@@ -41,7 +41,6 @@ function Home() {
     return (
         <div>
             <h1>Employees</h1>
-            <div>
                 {employees.length > 0 ? (
                 <table border="1" cellPadding="10">
                     <tbody>
@@ -72,7 +71,6 @@ function Home() {
                     }
                 </table>
                 ) : (<p>There are no employees to display.</p>)}
-            </div>
             <br/>
             <Link to="/add-employee">
                 <button className="add">Add Employee</button>
