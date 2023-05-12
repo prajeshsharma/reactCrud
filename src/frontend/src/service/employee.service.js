@@ -1,7 +1,9 @@
 import httpClient from "../http-common";
 
-const getAll = () => {
-    return httpClient.get('/getallemployees');
-}
+const employeeService = {
+    getAll: () => {
+        return httpClient.get('/getallemployees');
+    }
+};
 
-export default { getAll };
+export default employeeService;

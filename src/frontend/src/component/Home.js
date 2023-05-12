@@ -58,7 +58,7 @@ function Home() {
                             <tr key={employee.id}>
                                 <td>{employee.id}</td>
                                 <td>
-                                    <img src={employee.image} width={100} height={100}  alt={'image not found'}/></td>
+                                    <img src={employee.image} width={100} height={100}  alt={'not found'}/></td>
                                 <td>{employee.name}</td>
                                 <td>{employee.email}</td>
                                 <td>
