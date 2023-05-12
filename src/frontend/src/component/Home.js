@@ -16,6 +16,12 @@ function Home() {
             })
     }, []);
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const handleModalToggle = () => {
+        setModalIsOpen(!modalIsOpen);
+    };
+
     const fetchEmployees = async () => {
         try {
             const response = await fetch('http://localhost:8080/employee/getallemployees');
@@ -49,7 +55,7 @@ function Home() {
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                     </tbody>
                     {
@@ -59,16 +65,16 @@ function Home() {
                                 <td>{employee.name}</td>
                                 <td>{employee.email}</td>
                                 <td>
-                                    <button className='update'>Update</button>
+                                    <Link to={`/update-employee/${employee.id}`}>
+                                        <button className="update">Update</button>
+                                    </Link>
                                     <button className='delete' onClick={() => handleDelete(employee.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))
                     }
                 </table>
-                ) : (
-                    <p>There are no employees to display.</p>
-                )}
+                ) : (<p>There are no employees to display.</p>)}
             </div>
             <br/>
             <Link to="/add-employee">

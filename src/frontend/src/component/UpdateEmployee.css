@@ -1,0 +1,21 @@
+.cancel {
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cancel:hover {
+    background-color: indianred;
+}
+
+.cancel:active {
+    background-color: darkred;
+}
+
+.content {
+    margin: 20px;
+}
