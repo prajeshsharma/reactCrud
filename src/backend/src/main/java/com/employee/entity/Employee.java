@@ -23,10 +23,4 @@ public class Employee {
     private String image;
     private String name;
     private String email;
-
-    public Employee(String image, String name, String email) {
-        this.image = image;
-        this.name = name;
-        this.email = email;
-    }
 }
