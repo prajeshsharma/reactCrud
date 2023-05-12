@@ -53,8 +53,8 @@ public class EmployeeController {
 
     /**
      *
-     * @param id the ID of the employee to be udated
-     * @param employee the attributes of that exmployee
+     * @param id the ID of the employee to be updated
+     * @param employee the attributes of that employee
      * @return the updated employee, or error if not found
      */
     @PutMapping("/update/{id}")
