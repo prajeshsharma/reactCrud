@@ -8,14 +8,22 @@ const UpdateEmployee = () => {
     const [employee, setEmployee] = useState({
         name: '',
         email: '',
+        image: '',
     });
+    const [image, setImage] = useState('');
 
     useEffect(() => {
         const fetchEmployee = async () => {
             const result = await axios.get(`http://localhost:8080/employee/${id}`);
             setEmployee(result.data);
         };
-        fetchEmployee();
+        fetchEmployee()
+            .then((result) => {
+                console.log(`Success in getting employee of id: ${id}`, result)
+            })
+            .catch((error) => {
+                console.log(`Error in getting employee of id: ${id}`, error)
+            });
     }, [id]);
 
     const handleChange = (event) => {
@@ -28,6 +36,15 @@ const UpdateEmployee = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+        if (!urlRegex.test(employee.image)) {
+            alert('Please enter a valid image URL');
+            setImage(image);
+            return;
+        }
+
         await axios.put(`http://localhost:8080/employee/update/${id}`, employee);
         window.location = '/';
     };
@@ -40,7 +57,12 @@ const UpdateEmployee = () => {
                 <input type="text" name="name" id="name" value={employee.name} onChange={handleChange} required />
 
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="email" value={employee.email} onChange={handleChange} required /><br/>
+                <input type="email" name="email" id="email" value={employee.email} onChange={handleChange} required />
+
+                <label htmlFor="image">Image Link</label>
+                <input type="text" name="image" id="image" value={employee.image} onChange={handleChange} required />
+
+                <br/>
 
                 <button type="submit">Update Employee</button>
             </form>

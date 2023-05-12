@@ -4,11 +4,20 @@ import './AddEmployee.css'
 function AddEmployee() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [image, setImage] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const data = { name, email };
+        const data = { name, email, image };
+
+        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+        if (!urlRegex.test(image)) {
+            alert('Please enter a valid image URL');
+            setImage('');
+            return;
+        }
 
         try {
             const response = await fetch('http://localhost:8080/employee/add', {
@@ -25,6 +34,7 @@ function AddEmployee() {
         // Clear the form fields
         setName('');
         setEmail('');
+        setImage('');
     };
 
     return (
@@ -36,6 +46,9 @@ function AddEmployee() {
 
                 <label htmlFor="email">Email:</label>
                 <input id="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
+
+                <label htmlFor="image">Image Link:</label>
+                <input id="image" type="text" value={image} onChange={(event) => setImage(event.target.value)} required/>
                 <br/>
                 <button type="submit">Submit</button>
             </form>

@@ -16,12 +16,6 @@ function Home() {
             })
     }, []);
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    const handleModalToggle = () => {
-        setModalIsOpen(!modalIsOpen);
-    };
-
     const fetchEmployees = async () => {
         try {
             const response = await fetch('http://localhost:8080/employee/getallemployees');
@@ -53,6 +47,7 @@ function Home() {
                     <tbody>
                     <tr>
                         <th>ID</th>
+                        <th>Profile Picture</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Actions</th>
@@ -62,6 +57,8 @@ function Home() {
                         employees.map(employee => (
                             <tr key={employee.id}>
                                 <td>{employee.id}</td>
+                                <td>
+                                    <img src={employee.image} width={100} height={100}  alt={'image not found'}/></td>
                                 <td>{employee.name}</td>
                                 <td>{employee.email}</td>
                                 <td>

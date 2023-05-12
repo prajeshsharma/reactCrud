@@ -12,9 +12,10 @@ public class EmployeeApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(EmployeeApplication.class, args);
 		EmployeeService employeeService = ctx.getBean(EmployeeService.class);
-		employeeService.addNewEmployee(new Employee("Gyanendra", "gyanendra@gmail.com"));
-		employeeService.addNewEmployee(new Employee("Timmy", "timmy@yahoo.com"));
-		employeeService.addNewEmployee(new Employee("Yolo", "yolo@yolo.yolo"));
+		String gyanendraImage = "https://upload.wikimedia.org/wikipedia/commons/f/fc/Gyanendra_Shah.jpg";
+		employeeService.addNewEmployee(new Employee(gyanendraImage, "Gyanendra", "gyanendra@gmail.com"));
+		employeeService.addNewEmployee(new Employee("https://img2.wikia.nocookie.net/__cb20120808065653/fantendo/images/c/c0/TIMMY_TURNER.png", "Timmy", "timmy@yahoo.com"));
+		employeeService.addNewEmployee(new Employee("https://www.stateofdigitalpublishing.com/wp-content/uploads/2019/06/Yolo-App.png", "Yolo", "yolo@yolo.yolo"));
 	}
 
 }
