@@ -1,6 +1,7 @@
 import './App.css';
 import employeeService from './service/employee.service';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const App = () => {
     const [employees, setEmployees] = useState([]);
@@ -15,6 +16,7 @@ const App = () => {
             })
     }, []);
     return (
+        <BrowserRouter>
         <div>
             <h1>Employees</h1>
             <div>
@@ -40,8 +42,11 @@ const App = () => {
                 </table>
             </div>
             <br/>
-            <button className='add' >Add new Employee</button>
+            <Link to="/add-employee">
+                <button className="add">Add Employee</button>
+            </Link>
         </div>
+        </BrowserRouter>
     );
 }
 
