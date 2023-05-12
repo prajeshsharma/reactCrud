@@ -18,7 +18,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @PostMapping("/addemployee")
+    @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
         Employee newEmployee = employeeService.addNewEmployee(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
@@ -31,7 +31,7 @@ public class EmployeeController {
     }
 
 
-    @PutMapping("/updateemployeebyid/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @Validated @RequestBody Employee employee) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);
         if (employeeOptional.isPresent()) {
@@ -42,7 +42,7 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("deleteemployeebyid/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<?> deleteEmployeeById(@PathVariable("id") long id) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);
         if (employeeOptional.isPresent()) {

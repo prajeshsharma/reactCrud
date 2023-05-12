@@ -11,7 +11,7 @@ function AddEmployee() {
         const data = { name, email };
 
         try {
-            const response = await fetch('http://localhost:8080/employee/addemployee', {
+            const response = await fetch('http://localhost:8080/employee/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -21,12 +21,11 @@ function AddEmployee() {
             console.log('Error:', error);
         }
 
+        alert('Employee has been added');
         // Clear the form fields
         setName('');
         setEmail('');
     };
-
-
 
     return (
         <div className='content'>
