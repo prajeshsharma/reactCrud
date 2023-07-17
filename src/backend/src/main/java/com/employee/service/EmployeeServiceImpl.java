@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      *
-     * @param id IF of employee to be deleted
+     * @param id ID of employee to be deleted
      */
     @Override
     public void deleteEmployeeById(long id) {

@@ -5,12 +5,9 @@ import './UpdateEmployee.css'
 
 const UpdateEmployee = () => {
     const { id } = useParams();
-    const [employee, setEmployee] = useState({
-        name: '',
-        email: '',
-        image: '',
+    const [employee, setEmployee, setImage] = useState({
+        name: '', email: '', image: ''
     });
-    const [image, setImage] = useState('');
 
     useEffect(() => {
         const fetchEmployee = async () => {
@@ -41,7 +38,7 @@ const UpdateEmployee = () => {
 
         if (!urlRegex.test(employee.image)) {
             alert('Please enter a valid image URL');
-            setImage(image);
+            setImage(employee.image);
             return;
         }
 

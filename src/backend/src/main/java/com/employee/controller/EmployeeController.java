@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -23,8 +23,8 @@ public class EmployeeController {
      * @param employee employee entity to be added
      * @return employee entity to be added with CREATED status
      */
-    @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+    @PostMapping
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
         Employee newEmployee = employeeService.addNewEmployee(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
@@ -33,7 +33,7 @@ public class EmployeeController {
      *
      * @return all employees in the table with OK status
      */
-    @GetMapping("/getallemployees")
+    @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
@@ -57,7 +57,7 @@ public class EmployeeController {
      * @param employee the attributes of that employee
      * @return the updated employee, or error if not found
      */
-    @PutMapping("/update/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @Validated @RequestBody Employee employee) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);
         if (employeeOptional.isPresent()) {
@@ -73,7 +73,7 @@ public class EmployeeController {
      * @param id the ID of the employee to be deleted
      * @return OK status or NOT_FOUND
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmployeeById(@PathVariable("id") long id) {
         Optional<Employee> employeeOptional = employeeService.getEmployeeById(id);
         if (employeeOptional.isPresent()) {
